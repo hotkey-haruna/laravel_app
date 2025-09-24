@@ -1,0 +1,28 @@
+@charset "uft-8";
+
+.button {
+  display: block;
+  background-color: #2f4f4f;
+  color: #fff;
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.buttonoff {
+  display: block;
+  background-color: #333;
+  color: #999;
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+}
+.button:hover {
+  color: #fff;
+  opacity: 0.8;
+}
+
