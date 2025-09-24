@@ -30,8 +30,25 @@
         </style>
 
     </head>
-    <body class="antialiased">
         <div class="field">
+            <div style="margin:1em;width: 600px;height: 300px;">
+                <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
+
             <div style="margin:1em;width: 300px;height: 1000px;">
 @include('menu.left')
             </div>
