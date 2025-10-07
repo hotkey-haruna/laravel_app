@@ -4,8 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // file
-Route::get('/home', 'App\Http\Controllers\IndexController@index')->name('home');
-Route::get('/file/{id}', 'App\Http\Controllers\FileController@index')->name('file');
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('home');
+Route::get('/file_list/{page}', 'App\Http\Controllers\FileController@index')->name('file_list');
+Route::get('/file/{id}', 'App\Http\Controllers\FileController@edit')->name('file');
 Route::post('/upload', 'App\Http\Controllers\FileController@upload')->name('file.update');
 Route::get('/download/{token}', 'App\Http\Controllers\FileController@download')->name('file.download');
 
@@ -13,12 +14,14 @@ Route::get('/download/{token}', 'App\Http\Controllers\FileController@download')-
 Route::get('/user_list/{page}', 'App\Http\Controllers\UserController@index')->name('user_list');
 Route::post('/user/{id}', 'App\Http\Controllers\UserController@edit')->name('user');
 Route::post('/user_list/0', 'App\Http\Controllers\UserController@add')->name('user.add');
+
 // project
 Route::get('/project_list/{page}', 'App\Http\Controllers\ProjectController@index')->name('project_list');
 Route::post('/project/{id}', 'App\Http\Controllers\ProjectController@edit')->name('project');
 Route::post('/project_list/0', 'App\Http\Controllers\ProjectController@add')->name('project.add');
+
 // history
-Route::get('/history/{id}', 'App\Http\Controllers\HistoryController@index')->name('history');
+Route::get('/history_list/{page}', 'App\Http\Controllers\HistoryController@index')->name('history_list');
 
 Route::get('/', function () {
 //    return view('welcome');

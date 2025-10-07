@@ -16,12 +16,15 @@ class FileController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $files = File::join('file_links', function($join) {$join->on('files.id', 'file_links.project_id');} )->orderby('file_links.limit_dt', 'desc')->get();
+
+        return view('file_list', compact('files'));
     }
 
     public function upload(Request $request)
     {
         $user = $request->user();
+        $fname = $request['fname'];
         $image = $request->file('image');
         $limit = $request['limit']; 
         //画像が送信されてきていたら保存処理
@@ -29,7 +32,7 @@ class FileController extends Controller
             //保存されたパス
             $image_url = Storage::disk('public')->put('user_profile_image', $image, 'public'); //画像の保存処理
             $file = new File();
-            $file->name = "sample";
+            $file->name = $fname;
             $file->path = $image_url;
             $file->valid = 1;
             $file->save();
@@ -52,7 +55,7 @@ class FileController extends Controller
 
             $this->sendMail($request, $token, $limit_dt);
 
-            return view('upload', compact('token'));
+            return view('upload', compact('token', 'limit_dt'));
         }
 
         //$files = File::all();
